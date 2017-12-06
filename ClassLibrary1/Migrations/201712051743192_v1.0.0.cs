@@ -8,7 +8,7 @@ namespace ClassLibrary1.Migrations
         public override void Up()
         {
             CreateTable(
-                "plainpassword",
+                "dbo.plainpassword",
                 c => new
                     {
                         idPlain = c.Int(nullable: false, identity: true),
@@ -18,7 +18,7 @@ namespace ClassLibrary1.Migrations
                 .PrimaryKey(t => t.idPlain);
             
             CreateTable(
-                "t_token",
+                "dbo.t_token",
                 c => new
                     {
                         id = c.Int(nullable: false, identity: true),
@@ -29,7 +29,7 @@ namespace ClassLibrary1.Migrations
                 .PrimaryKey(t => t.id);
             
             CreateTable(
-                "user",
+                "dbo.user",
                 c => new
                     {
                         Id = c.Int(nullable: false),
@@ -51,9 +51,9 @@ namespace ClassLibrary1.Migrations
         
         public override void Down()
         {
-            DropTable("user");
-            DropTable("t_token");
-            DropTable("plainpassword");
+            DropTable("dbo.user");
+            DropTable("dbo.t_token");
+            DropTable("dbo.plainpassword");
         }
     }
 }

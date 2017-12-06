@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain
 {
@@ -9,6 +10,7 @@ namespace Domain
         [Key]
         public int id { get; set; }
         [Display(Name = "candidate_name")]
+        [MaxLength(25)]
         public string name { get; set; }
         [Display(Name = "candidate_surname")]
         public string surname { get; set; }

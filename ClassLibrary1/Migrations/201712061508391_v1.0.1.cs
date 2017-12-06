@@ -95,7 +95,7 @@ namespace ClassLibrary1.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.Languages", "CV_id", "dbo.CVs");
+            DropForeignKey("Languages", "CV_id", "CVs");
             DropForeignKey("dbo.Experiences", "CV_id", "dbo.CVs");
             DropForeignKey("dbo.Educations", "CV_id", "dbo.CVs");
             DropForeignKey("dbo.CVs", "candidateId", "dbo.Candidates");

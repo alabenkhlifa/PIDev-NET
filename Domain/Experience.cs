@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain
 {
@@ -17,5 +18,8 @@ namespace Domain
         [Display(Name = "experience_poste")]
         public string poste { get; set; }
         public string company { get; set; }
+        [ForeignKey("cv")]
+        public int cv_id { get; set; }
+        public CV cv { get; set; }
     }
 }
