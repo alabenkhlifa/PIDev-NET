@@ -14,6 +14,11 @@ namespace Data
         public virtual DbSet<plainpassword> plainpassword { get; set; }
         public virtual DbSet<t_token> t_token { get; set; }
         public virtual DbSet<user> user { get; set; }
+        public virtual DbSet<Candidate> candidate { get; set; }
+        public virtual DbSet<CV> cv { get; set; }
+        public virtual DbSet<Education> education { get; set; }
+        public virtual DbSet<Experience> experience { get; set; }
+        public virtual DbSet<Languages> languages { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
