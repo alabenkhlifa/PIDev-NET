@@ -29,7 +29,7 @@ namespace Domain
         [StringLength(255)]
         public string password { get; set; }
 
-        [StringLength(255)]
+        [DataType(DataType.EmailAddress)]
         public string phoneNumber { get; set; }
 
         public byte[] picture { get; set; }
@@ -37,7 +37,7 @@ namespace Domain
         [StringLength(255)]
         public string role { get; set; }
 
-        public int? state { get; set; }
+        public bool? state { get; set; }
 
         [StringLength(255)]
         public string username { get; set; }
