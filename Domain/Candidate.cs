@@ -15,7 +15,7 @@ namespace Domain
         [Display(Name = "candidate_surname")]
         public string surname { get; set; }
         [Display(Name = "candidate_birthdate")]
-        [DataType(DataType.Date)]
+        [Column(TypeName = "Date")]
         public DateTime birthDate { get; set; }
         [Display(Name = "candidate_age")]
         public int age { get; set; }

@@ -10,10 +10,10 @@ namespace Domain
         [Display(Name = "experience_id")]
         public int id { get; set; }
         [Display(Name = "experience_from")]
-        [DataType(DataType.Date)]
+        [Column(TypeName = "Date")]
         public DateTime from { get; set; }
         [Display(Name = "experience_to")]
-        [DataType(DataType.Date)]
+        [Column(TypeName = "Date")]
         public DateTime to { get; set; }
         [Display(Name = "experience_poste")]
         public string poste { get; set; }

@@ -23,9 +23,9 @@ namespace ConsoleApplication1
             };
             Organisation org = new Organisation
             {
-                organisationCity = "Monastir",
-                organisationCountry = "Tunisia",
-                organisationName = "ISIMM"
+                City = "Monastir",
+                Country = "Tunisia",
+                Name = "ISIMM"
             };
 
             Education educ = new Education
@@ -90,8 +90,8 @@ namespace ConsoleApplication1
             //EDS.Add(educ);
             //EDS.Commit();
             CandidateService CAS = new CandidateService();
-            //var con = CAS.GetById(2);
-            //Console.WriteLine(con.email);
+            var con = CAS.GetById(2);
+            Console.WriteLine(con.email);
             //CAS.Add(cand);
             //CAS.Commit();
             //CVService CVS = new CVService();

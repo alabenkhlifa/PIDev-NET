@@ -1,4 +1,5 @@
-﻿using Service;
+﻿using Domain;
+using Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,8 @@ namespace ClientWeb.Controllers
         // GET: Candidate/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Candidate c = CS.GetById(id);
+            return View(c);
         }
 
         // GET: Candidate/Create
@@ -30,12 +32,13 @@ namespace ClientWeb.Controllers
 
         // POST: Candidate/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Candidate C)
         {
             try
             {
                 // TODO: Add insert logic here
-
+                CS.Add(C);
+                CS.Commit();
                 return RedirectToAction("Index");
             }
             catch
@@ -68,8 +71,8 @@ namespace ClientWeb.Controllers
 
         // GET: Candidate/Delete/5
         public ActionResult Delete(int id)
-        {
-            return View();
+        {            
+            return View(CS.GetById(id));
         }
 
         // POST: Candidate/Delete/5
@@ -79,7 +82,8 @@ namespace ClientWeb.Controllers
             try
             {
                 // TODO: Add delete logic here
-
+                CS.Delete(CS.GetById(id));
+                CS.Commit();
                 return RedirectToAction("Index");
             }
             catch

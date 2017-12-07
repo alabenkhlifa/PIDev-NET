@@ -153,6 +153,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Candidate\Index.cshtml" />
+    <Content Include="Views\Candidate\Create.cshtml" />
+    <Content Include="Views\Candidate\Delete.cshtml" />
+    <Content Include="Views\Candidate\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -2,8 +2,8 @@
 {
     public class Organisation
     {
-        public string organisationName { get; set; }
-        public string organisationCity { get; set; }
-        public string organisationCountry { get; set; }
+        public string Name { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
     }
 }
