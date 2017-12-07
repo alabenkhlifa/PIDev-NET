@@ -92,6 +92,7 @@ namespace ConsoleApplication1
             CandidateService CAS = new CandidateService();
             var con = CAS.GetById(2);
             Console.WriteLine(con.email);
+            
             //CAS.Add(cand);
             //CAS.Commit();
             //CVService CVS = new CVService();

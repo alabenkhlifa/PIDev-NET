@@ -50,22 +50,35 @@ namespace ClientWeb.Controllers
         // GET: Candidate/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            
+            Candidate c = CS.GetById(id);
+            
+            if (c == null)
+            {
+                return HttpNotFound();
+            }
+            return View(c);
         }
 
         // POST: Candidate/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id , Candidate C)
         {
             try
             {
                 // TODO: Add update logic here
-
+                Candidate oldCandidate = CS.GetById(id);
+                oldCandidate = C;
+                CS.Update(oldCandidate);
+                //Data.Context CT = new Data.Context();
+                //CT.SaveChanges();
+                CS.Commit();
                 return RedirectToAction("Index");
             }
             catch
             {
                 return View();
+                //return RedirectToAction("Index");
             }
         }
 
