@@ -50,6 +50,7 @@ namespace ClientWeb.Controllers
             ViewData["Candidate"] = Session["Candidate"];
             ViewData["EducationSession"] = Session["EducationSession"];
             ViewData["ExperienceSession"] = Session["ExperienceSession"];
+            ViewData["LanguagesSession"] = Session["LanguagesSession"];
             return View();
         }
 
@@ -62,15 +63,18 @@ namespace ClientWeb.Controllers
                 Candidate C = Session["Candidate"] as Candidate;
                 List<Education> LE = Session["EducationSession"] as List<Education>;
                 List<Experience> LEx = Session["ExperienceSession"] as List<Experience>;
+                List<Languages> LL = Session["LanguagesSession"] as List<Languages>;
                 cv.educations = LE;
                 cv.experiences = LEx;
                 cv.candidate = C;
                 cv.candidateId=C.id;
+                cv.languages = LL;
                 CVS.Add(cv);
                 CVS.Commit();
                 Session["Candidate"] = null;
                 Session["EducationSession"] = null;
                 Session["ExperienceSession"] = null;
+                Session["Languages"] = null;
                 return RedirectToAction("Index");
             }
             catch
