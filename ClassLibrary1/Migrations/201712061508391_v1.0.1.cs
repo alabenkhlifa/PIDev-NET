@@ -11,7 +11,7 @@ namespace ClassLibrary1.Migrations
             //MoveTable(name: "t_token", newSchema: "dbo");
             //MoveTable(name: "user", newSchema: "dbo");
             CreateTable(
-                "dbo.Candidates",
+                "Candidates",
                 c => new
                     {
                         id = c.Int(nullable: false, identity: true),
@@ -29,7 +29,7 @@ namespace ClassLibrary1.Migrations
                 .PrimaryKey(t => t.id);
             
             CreateTable(
-                "dbo.CVs",
+                "CVs",
                 c => new
                     {
                         id = c.Int(nullable: false, identity: true),
@@ -40,11 +40,11 @@ namespace ClassLibrary1.Migrations
                         hobbies = c.String(unicode: false),
                     })
                 .PrimaryKey(t => t.id)
-                .ForeignKey("dbo.Candidates", t => t.candidateId, cascadeDelete: true)
+                .ForeignKey("Candidates", t => t.candidateId, cascadeDelete: true)
                 .Index(t => t.candidateId);
             
             CreateTable(
-                "dbo.Educations",
+                "Educations",
                 c => new
                     {
                         id = c.Int(nullable: false, identity: true),
@@ -57,11 +57,11 @@ namespace ClassLibrary1.Migrations
                         CV_id = c.Int(),
                     })
                 .PrimaryKey(t => t.id)
-                .ForeignKey("dbo.CVs", t => t.CV_id)
+                .ForeignKey("CVs", t => t.CV_id)
                 .Index(t => t.CV_id);
             
             CreateTable(
-                "dbo.Experiences",
+                "Experiences",
                 c => new
                     {
                         id = c.Int(nullable: false, identity: true),
@@ -72,11 +72,11 @@ namespace ClassLibrary1.Migrations
                         CV_id = c.Int(),
                     })
                 .PrimaryKey(t => t.id)
-                .ForeignKey("dbo.CVs", t => t.CV_id)
+                .ForeignKey("CVs", t => t.CV_id)
                 .Index(t => t.CV_id);
             
             CreateTable(
-                "dbo.Languages",
+                "Languages",
                 c => new
                     {
                         id = c.Int(nullable: false, identity: true),
@@ -85,35 +85,35 @@ namespace ClassLibrary1.Migrations
                         CV_id = c.Int(),
                     })
                 .PrimaryKey(t => t.id)
-                .ForeignKey("dbo.CVs", t => t.CV_id)
+                .ForeignKey("CVs", t => t.CV_id)
                 .Index(t => t.CV_id);
             
-            AlterColumn("dbo.user", "Id", c => c.Int(nullable: false, identity: true));
-            AlterColumn("dbo.user", "phoneNumber", c => c.String(unicode: false));
-            AlterColumn("dbo.user", "state", c => c.Boolean());
+            AlterColumn("user", "Id", c => c.Int(nullable: false, identity: true));
+            AlterColumn("user", "phoneNumber", c => c.String(unicode: false));
+            AlterColumn("user", "state", c => c.Boolean());
         }
         
         public override void Down()
         {
             DropForeignKey("Languages", "CV_id", "CVs");
-            DropForeignKey("dbo.Experiences", "CV_id", "dbo.CVs");
-            DropForeignKey("dbo.Educations", "CV_id", "dbo.CVs");
-            DropForeignKey("dbo.CVs", "candidateId", "dbo.Candidates");
-            DropIndex("dbo.Languages", new[] { "CV_id" });
-            DropIndex("dbo.Experiences", new[] { "CV_id" });
-            DropIndex("dbo.Educations", new[] { "CV_id" });
-            DropIndex("dbo.CVs", new[] { "candidateId" });
-            AlterColumn("dbo.user", "state", c => c.Int());
-            AlterColumn("dbo.user", "phoneNumber", c => c.String(maxLength: 255, unicode: false));
-            AlterColumn("dbo.user", "Id", c => c.Int(nullable: false));
-            DropTable("dbo.Languages");
-            DropTable("dbo.Experiences");
-            DropTable("dbo.Educations");
-            DropTable("dbo.CVs");
-            DropTable("dbo.Candidates");
-            MoveTable(name: "dbo.user", newSchema: "userdb");
-            MoveTable(name: "dbo.t_token", newSchema: "userdb");
-            MoveTable(name: "dbo.plainpassword", newSchema: "userdb");
+            DropForeignKey("Experiences", "CV_id", "CVs");
+            DropForeignKey("Educations", "CV_id", "CVs");
+            DropForeignKey("CVs", "candidateId", "Candidates");
+            DropIndex("Languages", new[] { "CV_id" });
+            DropIndex("Experiences", new[] { "CV_id" });
+            DropIndex("Educations", new[] { "CV_id" });
+            DropIndex("CVs", new[] { "candidateId" });
+            AlterColumn("user", "state", c => c.Int());
+            AlterColumn("user", "phoneNumber", c => c.String(maxLength: 255, unicode: false));
+            AlterColumn("user", "Id", c => c.Int(nullable: false));
+            DropTable("Languages");
+            DropTable("Experiences");
+            DropTable("Educations");
+            DropTable("CVs");
+            DropTable("Candidates");
+            MoveTable(name: "user", newSchema: "userdb");
+            MoveTable(name: "t_token", newSchema: "userdb");
+            MoveTable(name: "plainpassword", newSchema: "userdb");
         }
     }
 }

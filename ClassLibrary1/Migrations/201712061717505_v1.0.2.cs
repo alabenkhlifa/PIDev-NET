@@ -16,11 +16,11 @@ namespace ClassLibrary1.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.Educations", "cv_id", "dbo.CVs");
-            DropIndex("dbo.Educations", new[] { "cv_id" });
-            AlterColumn("dbo.Educations", "cv_id", c => c.Int());
-            CreateIndex("dbo.Educations", "CV_id");
-            AddForeignKey("dbo.Educations", "CV_id", "dbo.CVs", "id");
+            DropForeignKey("Educations", "cv_id", "CVs");
+            DropIndex("Educations", new[] { "cv_id" });
+            AlterColumn("Educations", "cv_id", c => c.Int());
+            CreateIndex("Educations", "CV_id");
+            AddForeignKey("Educations", "CV_id", "CVs", "id");
         }
     }
 }
