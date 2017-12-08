@@ -1,0 +1,82 @@
+﻿@model Domain.CV
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>CV</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.candidateId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @(ViewData["Candidate"]==null? @Html.ActionLink("Add", "Create", "Candidate", null, new { @class = "btn btn-primary" }): @Html.ActionLink("Edit", "EditFromSession", "Candidate", null, new { @class = "btn btn-warning" }))
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.educations, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @(ViewData["EducationSession"] == null ? @Html.ActionLink("Add", "Create", "Education", null, new { @class = "btn btn-primary" }) : @Html.ActionLink("Add Another", "Create", "Education", null, new { @class = "btn btn-info" }))
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.experiences, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @(ViewData["ExperienceSession"] == null ? @Html.ActionLink("Add", "Create", "Experience", null, new { @class = "btn btn-primary" }) : @Html.ActionLink("Add Another", "Create", "Experience", null, new { @class = "btn btn-info" }))
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.typeofjob, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.typeofjob, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.typeofjob, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.departement, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.departement, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.departement, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.linkedInLink, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.linkedInLink, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.linkedInLink, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.hobbies, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.hobbies, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.hobbies, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

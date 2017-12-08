@@ -36,10 +36,13 @@ namespace ClientWeb.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
-                CS.Add(C);
-                CS.Commit();
-                return RedirectToAction("Index");
+                // Insert into Database
+                //CS.Add(C);
+                //CS.Commit();
+
+                // Insert into Session
+                Session["Candidate"] = C;
+                return RedirectToAction("Create","CV");
             }
             catch
             {
@@ -104,5 +107,20 @@ namespace ClientWeb.Controllers
                 return View();
             }
         }
+
+        // GET: Candidate/EditFromSession
+        public ActionResult EditFromSession()
+        {
+            return View(Session["Candidate"]);
+        }
+
+        // POST: Candidate/EditFromSession
+        [HttpPost]
+        public ActionResult EditFromSession(Candidate C)
+        {
+            Session["Candidate"] = C;
+            return RedirectToAction("Create", "CV");
+        }
+
     }
 }

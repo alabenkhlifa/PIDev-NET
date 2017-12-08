@@ -53,7 +53,12 @@ namespace ConsoleApplication1
                 sex = "Male",
                 surname = "Ben khlifa"
             };
-            var listedu = new List<Education>();
+            var listedu = new Education[10];
+            CVService CVS = new CVService();
+            CV c = CVS.GetById(2);
+            EducationService ES = new EducationService();
+            listedu = c.educations.ToArray();
+            Console.WriteLine(ES.GetById(listedu[0].id).title);
             var listexp = new List<Experience>();
             var listlang = new List<Languages>();
             //listlang.Add(lang);
@@ -89,9 +94,9 @@ namespace ConsoleApplication1
             //EducationService EDS = new EducationService();
             //EDS.Add(educ);
             //EDS.Commit();
-            CandidateService CAS = new CandidateService();
-            var con = CAS.GetById(2);
-            Console.WriteLine(con.email);
+            
+            //var con = CAS.GetById(2);
+            //Console.WriteLine(con.email);
             
             //CAS.Add(cand);
             //CAS.Commit();

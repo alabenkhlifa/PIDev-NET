@@ -161,6 +161,13 @@
     <Content Include="Views\Candidate\Delete.cshtml" />
     <Content Include="Views\Candidate\Details.cshtml" />
     <Content Include="Views\Candidate\Edit.cshtml" />
+    <Content Include="Views\CV\Index.cshtml" />
+    <Content Include="Views\CV\Details.cshtml" />
+    <Content Include="Views\Education\Create.cshtml" />
+    <Content Include="Views\Education\Index.cshtml" />
+    <Content Include="Views\CV\Create.cshtml" />
+    <Content Include="Views\Candidate\EditFromSession.cshtml" />
+    <Content Include="Views\Experience\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -170,7 +177,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CandidateController.cs" />
+    <Compile Include="Controllers\CVController.cs" />
+    <Compile Include="Controllers\EducationController.cs" />
+    <Compile Include="Controllers\ExperienceController.cs" />
     <Compile Include="Models\CandidateModel.cs" />
+    <Compile Include="Models\CvModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

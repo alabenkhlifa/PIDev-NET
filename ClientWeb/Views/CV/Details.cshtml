@@ -1,0 +1,70 @@
+﻿@model ClientWeb.Models.CvModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CV</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.candidate.name)
+        </dt>
+
+        <dd>
+            @Html.ActionLink(Model.candidate.name, "Details", "Candidate", new { id = Model.candidate.id },null)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.typeofjob)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.typeofjob)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.departement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.departement)
+        </dd>
+
+        <dt>
+            Educations
+        </dt>
+
+        <dd>
+            @foreach (var edu in Model.educations)
+            {
+                @edu.title
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.linkedInLink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.linkedInLink)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hobbies)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hobbies)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
