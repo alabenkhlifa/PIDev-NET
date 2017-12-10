@@ -33,12 +33,25 @@
     </thead>
         @foreach (var item in Model)
         {
+            if (item.typeofjob.Equals("Engineer"))
+            {
+                ViewBag.CLS = "label label-success";
+            }
+            else if (item.typeofjob.Equals("Traineeship"))
+            {
+                ViewBag.CLS = "label label-info";
+            }
+            else
+            {
+                ViewBag.CLS = "label label-danger";
+            }
             <tr class="bg-gray-light">
                 <td>
                     @Html.DisplayFor(modelItem => item.candidate.surname) @Html.DisplayFor(modelItem => item.candidate.name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.typeofjob)
+                    <span class="@ViewBag.CLS">
+                    @Html.DisplayFor(modelItem => item.typeofjob)</span>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.departement)
@@ -50,9 +63,9 @@
                     @Html.DisplayFor(modelItem => item.hobbies)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                    
+                    @Html.ActionLink("Details", "Details", new { id = item.id }, new { @class = "btn btn-sm btn-block btn-info" })
+                    
                 </td>
             </tr>
         }

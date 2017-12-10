@@ -3,70 +3,118 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    
+
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>CV</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.candidate.name)
-        </dt>
-
-        <dd>
-            @Html.ActionLink(Model.candidate.name, "Details", "Candidate", new { id = Model.candidate.id },null)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.typeofjob)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.typeofjob)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.departement)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.departement)
-        </dd>
-
-        <dt>
-            Educations
-        </dt>
-
-        <dd>
-            @if (null != Model.educations) {
-            foreach (var edu in Model.educations)
-            {
-                @edu.title
-            }
-            }
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.linkedInLink)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.linkedInLink)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.hobbies)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.hobbies)
-        </dd>
-
-    </dl>
+<h2 style="color:green">Details about @(Model.candidate.sex.Equals("Male") ? "Mr":"Mrs") @Html.ActionLink(Model.candidate.name+" "+Model.candidate.surname, "Details", "Candidate", new { id = Model.candidate.id }, null)</h2>
+<div class="row">
+    <div class="col-md-4">
+        <center><h3 style="color:darkkhaki">Educations</h3></center>
+        <table class="table table-bordered">
+            <thead>
+                <tr class="success">
+                    <th>School Name</th>
+                    <th>Degree</th>
+                    <th>Obtained On</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.educations != null) { 
+                foreach(var education in Model.educations) { 
+                <tr>
+                    <td>@education.organisation.Name</td>
+                    <td>@education.title</td>
+                    <td>@education.to.Year</td>
+                </tr>
+                }
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-5">
+        <center><h3 style="color:darkkhaki">Experiences</h3></center>
+        <table class="table table-bordered">
+            <thead>
+                <tr class="danger">
+                    <th>Company</th>
+                    <th>Job</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.experiences != null)
+                {
+                foreach (var experience in Model.experiences)
+                {
+                    <tr>
+                        <td>@experience.company</td>
+                        <td>@experience.poste</td>
+                        <td>@experience.from.Day/@experience.from.Month/@experience.from.Year</td>
+                        <td>@experience.to.Day/@experience.to.Month/@experience.to.Year</td>
+                    </tr>
+                }
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-3">
+        <center><h3 style="color:darkkhaki">Languages</h3></center>
+        <table class="table table-bordered">
+            <thead>
+                <tr class="info">
+                    <th>Language</th>
+                    <th>Level</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.languages != null)
+                {
+                foreach (var language in Model.languages)
+                {
+                    <tr>
+                        <td>@language.name</td>
+                        <td>@language.level</td>
+                    </tr>
+                }
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<center>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">
+        Accept
+    </button> @Html.ActionLink("Back", "Index", "CV", null, new { @class = "btn btn-lg btn-primary" }) @Html.ActionLink("Refuse", "Refuse", "CV", new { id = Model.candidate.id }, new { @class = "btn btn-lg btn-danger" })
+</center>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Appointement with @Model.candidate.name</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class='input-group date' id='datetimepicker1'>
+                        <input type='text' class="form-control" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success">Save Appointement</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+</script>
+

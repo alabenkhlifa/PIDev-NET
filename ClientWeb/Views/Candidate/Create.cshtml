@@ -82,5 +82,8 @@
             
                 }
                 <div>
+                @if (Session["User"] != null)
+                {
                     @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary col-md-offset-5" })
+                }
                 </div>

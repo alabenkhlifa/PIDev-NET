@@ -14,14 +14,19 @@ namespace ClientWeb.Controllers
         // GET: Candidate
         public ActionResult Index()
         {
-            return View(CS.GetAll());
+            if (Session["User"] != null)
+                return View(CS.GetAll());
+            return RedirectToAction("Index", "Login");
         }
 
         // GET: Candidate/Details/5
         public ActionResult Details(int id)
         {
-            Candidate c = CS.GetById(id);
-            return View(c);
+            if (Session["User"] != null) { 
+                Candidate c = CS.GetById(id);
+                return View(c);
+            }
+            return RedirectToAction("Index", "Login");
         }
 
         // GET: Candidate/Create
@@ -34,6 +39,7 @@ namespace ClientWeb.Controllers
         [HttpPost]
         public ActionResult Create(Candidate C)
         {
+            
             try
             {
                 // Insert into Database
@@ -58,7 +64,8 @@ namespace ClientWeb.Controllers
         // GET: Candidate/Edit/5
         public ActionResult Edit(int id)
         {
-            
+            if (Session["User"] == null)
+                return RedirectToAction("Index", "Login");
             Candidate c = CS.GetById(id);
             
             if (c == null)
@@ -72,6 +79,8 @@ namespace ClientWeb.Controllers
         [HttpPost]
         public ActionResult Edit(int id , Candidate C)
         {
+            if (Session["User"] == null)
+                return RedirectToAction("Index", "Login");
             try
             {
                 // TODO: Add update logic here
@@ -92,7 +101,9 @@ namespace ClientWeb.Controllers
 
         // GET: Candidate/Delete/5
         public ActionResult Delete(int id)
-        {            
+        {
+            if (Session["User"] == null)
+                return RedirectToAction("Index", "Login");
             return View(CS.GetById(id));
         }
 
@@ -100,6 +111,8 @@ namespace ClientWeb.Controllers
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
+            if (Session["User"] == null)
+                return RedirectToAction("Index", "Login");
             try
             {
                 // TODO: Add delete logic here

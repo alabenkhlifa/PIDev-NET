@@ -131,5 +131,46 @@ namespace ClientWeb.Controllers
                 return View();
             }
         }
+
+        //GET : CV/Refuse/5
+        //id du candidat
+        public ActionResult Refuse(int id)
+        {
+            LanguageService LS = new LanguageService();
+            EducationService ES = new EducationService();
+            ExperienceService EXS = new ExperienceService();
+            CandidateService CAS = new CandidateService();
+            CV cv = CVS.GetAll().Where(c => (c.candidate.id == id)).FirstOrDefault() ;
+            var listOfLanguages = cv.languages;
+            var listOfEducations = cv.educations;
+            var listOfExperiences = cv.experiences;
+            if (listOfLanguages != null) { 
+                foreach(var l in listOfLanguages)
+                {
+                    LS.Delete(x=>x.id==l.id);
+                }
+                LS.Commit();
+            }
+            if (listOfEducations != null)
+            {
+                foreach (var e in listOfEducations)
+                {
+                    ES.Delete(x => x.id == e.id);
+                }
+                ES.Commit();
+            }
+            if (listOfExperiences != null)
+            {
+                foreach (var ex in listOfExperiences)
+                {
+                    EXS.Delete(x => x.id == ex.id);
+                }
+                EXS.Commit();
+            }
+            Candidate candidate = CAS.GetById(cv.candidate.id);
+            CAS.Delete(candidate);
+            CAS.Commit();
+            return RedirectToAction("Index", "CV");
+        }
     }
 }
