@@ -1,92 +1,86 @@
 ﻿@model Domain.Candidate
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<script src="~/Content/js/plugins/jquery/jquery-2.2.4.js"></script>
+<script src="~/Content/js/form.js"></script>
+<link rel="stylesheet" href="~/Content/css/form.css" />
 @{
-    ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Create</h2>
-
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Candidate</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-3">
+                    <form>
+                        <div id="contact-form" class="form-container" data-form-container>
+                            <div class="row">
+                                <div class="form-title">
+                                    <span>Basic Informations</span>
+                                </div>
+                            </div>
+                            <div class="input-container">
+                                <div class="row">
+                                    <span class="req-input">
+                                        <span class="input-status" data-toggle="tooltip" data-placement="top" title="Input Your First Name."> </span>
+                                        <input type="text" data-min-length="3" placeholder="Name" id="name" name="name">
+                                    </span>
+                                </div>
+                                <div class="row">
+                                    <span class="req-input">
+                                        <span class="input-status" data-toggle="tooltip" data-placement="top" title="Input Your Surname."> </span>
+                                        <input type="text" data-min-length="4" placeholder="Surname" id="surname" name="surname">
+                                    </span>
+                                </div>
+                                <div class="row">
+                                    <span class="req-input">
+                                        <span class="input-status" data-toggle="tooltip" data-placement="top" title="Input Your BirthDate."> </span>
+                                        <input type="text" data-min-length="10" data-inputmask="'alias': 'yyyy/mm/dd'" placeholder="Birth Date" data-mask="" id="birthDate" name="birthDate">
+                                    </span>
+                                </div>
+                                <div class="row">
+                                    <span class="req-input">
+                                        <span class="input-status" data-toggle="tooltip" data-placement="top" title="Please Input Your Email."> </span>
+                                        <input type="email" placeholder="Email" name="email" id="email">
+                                    </span>
+                                </div>
+                                <div class="row">
+                                    <span class="req-input">
+                                        <span class="input-status" data-toggle="tooltip" data-placement="top" title="Please Input Your Phone Number."> </span>
+                                        <input type="tel" placeholder="Phone Number" name="phone" id="phone">
+                                    </span>
+                                </div>
+                                <div class="row">
+                                    <span class="req-input">
+                                        <span class="input-status" data-toggle="tooltip" data-placement="top" title="Please Select your Gender."> </span>
+                                        <input type="text" data-min-length="4" placeholder="Gender" name="sex" id="sex">
+                                </div>
+                                <div class="row">
+                                    <span class="req-input">
+                                        <span class="input-status" data-toggle="tooltip" data-placement="top" title="Please Input your Country."> </span>
+                                        <input type="text" data-min-length="4" placeholder="Country" name="address.country" id="address.country">
+                                </div>
+                                <div class="row">
+                                    <span class="req-input">
+                                        <span class="input-status" data-toggle="tooltip" data-placement="top" title="Please Select your City."> </span>
+                                        <input type="text" data-min-length="3" placeholder="City" name="address.city" id="address.city">
+                                </div>
+                                <div class="row">
+                                    <span class="req-input">
+                                        <span class="input-status" data-toggle="tooltip" data-placement="top" title="Please Select your Address."> </span>
+                                        <input type="text" data-min-length="5" placeholder="Address" name="address.address" id="address.address">
+                                </div>
+                                <div class="row submit-row">
+                                    <button type="submit" class="btn btn-block submit-form">Add</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.surname, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.surname, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.surname, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.birthDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.birthDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.birthDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.age, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.age, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.age, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.phone, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                <input name="phone" id="phone" class="form-control" data-inputmask="&quot;mask&quot;: &quot;99-999-999&quot;" data-mask="" />
-                @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.sex, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.sex, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.sex, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+            
+                }
+                <div>
+                    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary col-md-offset-5" })
+                </div>

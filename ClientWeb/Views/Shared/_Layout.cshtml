@@ -20,17 +20,12 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-        @Html.Partial("_Header")
-        @Html.Partial("_Sidebar")
-
+        @if (Session["User"] != null)
+        {
+            @Html.Partial("_Header");
+            @Html.Partial("_Sidebar");
+        }
         <div class="content-wrapper">
-            <section class="content-header">
-                <h1>
-                    @ViewBag.Title
-                    <small>@ViewBag.Description</small>
-                </h1>
-            </section>
-
             <section class="content">
                 @RenderBody()
             </section>

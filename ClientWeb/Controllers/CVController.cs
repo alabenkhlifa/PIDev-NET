@@ -13,36 +13,41 @@ namespace ClientWeb.Controllers
     {
         CVService CVS = new CVService();
         CandidateService CS = new CandidateService();
+        
         // GET: CV
         public ActionResult Index()
         {
-            return View(CVS.GetAll());
+            if (Session["User"] != null)
+                return View(CVS.GetAll());
+            return RedirectToAction("Index", "Login");
         }
 
         // GET: CV/Details/5
         public ActionResult Details(int id)
         {
-            EducationService ES = new EducationService();
-            CV c = CVS.GetById(id);
+            if (Session["User"] == null)
+                return RedirectToAction("Index", "Login");
+            else { 
+                EducationService ES = new EducationService();
+                CV c = CVS.GetById(id);
 
-            CvModel CVVM = new CvModel();
-            CVVM.candidate = c.candidate;
-            CVVM.departement = c.departement;
-            //List<Education> educs = new List<Education>();
-            //foreach(var idedu in c.educations)
-            //{
-            //    educs.Add(ES.GetById(idedu.id));
-            //}
-            CVVM.educations = c.educations;
-            CVVM.experiences = c.experiences.ToList();
-            CVVM.hobbies = c.hobbies;
-            CVVM.languages = c.languages.ToList();
-            CVVM.linkedInLink = c.linkedInLink;
-            CVVM.typeofjob = c.typeofjob;
+                CvModel CVVM = new CvModel();
+                CVVM.candidate = c.candidate;
+                CVVM.departement = c.departement;
+                if (c.educations != null)
+                    CVVM.educations = c.educations;
+                if(c.experiences!=null)
+                    CVVM.experiences = c.experiences.ToList();
+                CVVM.hobbies = c.hobbies;
+                if (c.languages != null)
+                    CVVM.languages = c.languages.ToList();
+                CVVM.linkedInLink = c.linkedInLink;
+                CVVM.typeofjob = c.typeofjob;
+                return View(CVVM);
+            }
             
-
-            return View(CVVM);
         }
+    
 
         // GET: CV/Create
         public ActionResult Create()

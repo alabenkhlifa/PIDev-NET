@@ -41,6 +41,11 @@ namespace ClientWeb.Controllers
                 //CS.Commit();
 
                 // Insert into Session
+                DateTime now = DateTime.Now;
+                int age = now.Year - C.birthDate.Year;
+                if (now.Month > C.birthDate.Month)
+                    age++;
+                C.age = age;
                 Session["Candidate"] = C;
                 return RedirectToAction("Create","CV");
             }
@@ -120,6 +125,11 @@ namespace ClientWeb.Controllers
         {
             Session["Candidate"] = C;
             return RedirectToAction("Create", "CV");
+        }
+
+        public ActionResult Form()
+        {
+            return View();
         }
 
     }

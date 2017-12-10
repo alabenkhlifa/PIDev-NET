@@ -5,54 +5,56 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>List of Resumes</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create a Resume", "Create",null, new { @class = "btn btn-success" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.candidate.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.typeofjob)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.departement)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.linkedInLink)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.hobbies)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td >
-            @Html.DisplayFor(modelItem => item.candidate.surname) @Html.DisplayFor(modelItem => item.candidate.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.typeofjob)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.departement)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.linkedInLink)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.hobbies)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+<table class="table table-bordered">
+    <thead>
+        <tr class="bg-blue-gradient">
+            <th>
+                Candidate Name
+            </th>
+            <th>
+                Type of Job
+            </th>
+            <th>
+                Departement
+            </th>
+            <th>
+                LinkedIn Profile
+            </th>
+            <th>
+                Hobbies
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+        @foreach (var item in Model)
+        {
+            <tr class="bg-gray-light">
+                <td>
+                    @Html.DisplayFor(modelItem => item.candidate.surname) @Html.DisplayFor(modelItem => item.candidate.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.typeofjob)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.departement)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.linkedInLink)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.hobbies)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                </td>
+            </tr>
+        }
 
 </table>

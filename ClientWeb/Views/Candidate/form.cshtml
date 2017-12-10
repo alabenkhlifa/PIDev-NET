@@ -1,0 +1,129 @@
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<script src="~/Content/js/plugins/jquery/jquery-2.2.4.js"></script>
+<script src="~/Content/js/form.js"></script>
+
+<link rel="stylesheet" href="~/Content/css/form.css" />
+<div class="container">
+    <div class="row">
+		
+    	<div class="col-md-4">
+			<form>
+			<div id="contact-form" class="form-container" data-form-container>
+			<div class="row">
+				<div class="form-title">
+					<span>Contact Us</span>
+				</div>
+			</div>
+			<div class="input-container">
+				<div class="row">
+					<span class="req-input" >
+						<span class="input-status" data-toggle="tooltip" data-placement="top" title="Input Your First and Last Name."> </span>
+						<input type="text" data-min-length="8" placeholder="Full Name">
+					</span>
+				</div>
+				<div class="row">
+					<span class="req-input">
+						<span class="input-status" data-toggle="tooltip" data-placement="top" title="Please Input Your Email."> </span>
+						<input type="email" placeholder="Email">
+					</span>
+				</div>
+				<div class="row">
+					<span class="req-input">
+						<span class="input-status" data-toggle="tooltip" data-placement="top" title="Please Input Your Phone Number."> </span>
+						<input type="tel" placeholder="Phone Number">
+					</span>
+				</div>
+				<div class="row">
+					<span class="req-input message-box">
+						<span class="input-status" data-toggle="tooltip" data-placement="top" title="Please Include a Message."> </span>
+						<textarea type="textarea" data-min-length="10" placeholder="Message"></textarea>
+				</div>
+				<div class="row submit-row">
+					<button type="button" class="btn btn-block submit-form">Submit</button>
+				</div>
+			</div>
+			</div>
+			</form>
+		</div>
+        <div class="col-md-4">
+    		<form>
+			<div id="contact-form" class="form-container" data-form-container style="color: rgb(46, 125, 50); background: rgb(200, 230, 201);">
+			<div class="row">
+				<div class="form-title">
+					<span> Create Post </span>
+				</div>
+			</div>
+			<div class="input-container">
+				<div class="row">
+					<span class="req-input valid" >
+						<span class="input-status" data-toggle="tooltip" data-placement="top" title="Input your post title."> </span>
+						<input type="text" data-min-length="8" placeholder="Post Title" value="testing post">
+					</span>
+				</div>
+			
+				<div class="row">
+					<span class="req-input message-box valid">
+						<span class="input-status" data-toggle="tooltip" data-placement="top" title="Post Contents."> </span>
+						<textarea type="textarea" data-min-length="10" placeholder="Post Contents">Valid contents </textarea>
+				</div>
+				<div class="row submit-row">
+					<button type="button" class="btn btn-block submit-form valid">Submit</button>
+				</div>
+			</div>
+			</div>
+			</form>
+		</div>
+	    
+		<div class="col-md-4">
+		<form>
+    		<div id="login-form" class="form-container" data-form-container style="color: rgb(198, 40, 40); background: rgb(255, 205, 210);">
+			<div class="row">
+				<div class="form-title">
+					<span>Login</span>
+				</div>
+			</div>
+			<div class="input-container">
+				<div class="row">
+					<span class="req-input valid" >
+						<span class="input-status" data-toggle="tooltip" data-placement="top" title="Input your email."> </span>
+						<input type="email" data-min-length="8" placeholder="Email" value="testing@gmail.com">
+					</span>
+				</div>
+				<div class="row">
+					<span class="req-input input-password invalid">
+						<span class="input-status" data-toggle="tooltip" data-placement="top" title="Password must be at least 8 characters long."> </span>
+						<input type="password" data-min-length="8" placeholder="Password">
+					</span>
+				</div>
+				
+				<div class="row" style="display:none">
+					<span class="req-input confirm-password">
+						<span class="input-status" data-toggle="tooltip" data-placement="top" title="Password Must Match Initial Password Field."> </span>
+						<input type="password" data-min-length="8" placeholder="Confirm Password">
+					</span>
+				</div>
+				
+				<div class="row">
+					<a class="create-account"> Create an Account </a>
+				</div>
+				
+				<div class="row submit-row">
+					<button type="button" class="btn btn-block submit-form invalid">Login</button>
+				</div>
+				<div class="oauth-buttons">
+					<span><i class="fa fa-facebook"></i> </span>
+					<span><i class="fa fa-google-plus"></i> </span>
+					<span><i class="fa fa-linkedin"></i> </span>
+					<span><i class="fa fa-twitter"></i> </span>
+				</div>
+					
+				
+			</div>
+			</div>
+		
+			</form>
+		</div>
+	
+	</div>
+</div>

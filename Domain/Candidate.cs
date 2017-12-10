@@ -21,6 +21,8 @@ namespace Domain
         public int age { get; set; }
         public Address address { get; set; }
         public string phone { get; set; }
+        [DataType(DataType.EmailAddress)]
+        [Required]
         public string email { get; set; }
         public string sex { get; set; }
 

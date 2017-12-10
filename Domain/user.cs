@@ -36,8 +36,8 @@ namespace Domain
 
         [StringLength(255)]
         public string role { get; set; }
-
-        public bool? state { get; set; }
+        [StringLength(10)]
+        public string state { get; set; }
 
         [StringLength(255)]
         public string username { get; set; }

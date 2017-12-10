@@ -4,7 +4,46 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@{
+    List<SelectListItem> typeofjobs = new List<SelectListItem>();
+    typeofjobs.Add(new SelectListItem
+    {
+        Text = "Traineeship",
+        Value = "Traineeship"
+    });
+    typeofjobs.Add(new SelectListItem
+    {
+        Text = "Engineer",
+        Value = "Engineer"
+    });
+    typeofjobs.Add(new SelectListItem
+    {
+        Text = "Senior technician",
+        Value = "Senior technician"
+    });
 
+    List<SelectListItem> departementType = new List<SelectListItem>();
+    departementType.Add(new SelectListItem
+    {
+        Text = "Human Ressources",
+        Value = "Human Ressources"
+    });
+    departementType.Add(new SelectListItem
+    {
+        Text = "Financial",
+        Value = "Financial"
+    });
+    departementType.Add(new SelectListItem
+    {
+        Text = "Web Developement",
+        Value = "Web Developement"
+    });
+    departementType.Add(new SelectListItem
+    {
+        Text = "Law",
+        Value = "Law"
+    });
+}
 <h2>Create</h2>
 
 @using (Html.BeginForm()) 
@@ -47,16 +86,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.typeofjob, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.typeofjob, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.typeofjob, "", new { @class = "text-danger" })
+                @Html.DropDownList("typeofjob", typeofjobs, new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.departement, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.departement, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.departement, "", new { @class = "text-danger" })
+                @Html.DropDownList("departement", departementType, new { @class = "form-control" })
             </div>
         </div>
 

@@ -41,9 +41,11 @@
         </dt>
 
         <dd>
-            @foreach (var edu in Model.educations)
+            @if (null != Model.educations) {
+            foreach (var edu in Model.educations)
             {
                 @edu.title
+            }
             }
         </dd>
 
