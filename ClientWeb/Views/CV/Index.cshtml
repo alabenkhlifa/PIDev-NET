@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var acceptedlist = ViewData["AcceptedList"] as List<int>;
+
 }
 
 <h2>List of Resumes</h2>
@@ -35,7 +37,7 @@
         {
             if (item.typeofjob.Equals("Engineer"))
             {
-                ViewBag.CLS = "label label-success";
+                ViewBag.CLS = "label label-primary";
             }
             else if (item.typeofjob.Equals("Traineeship"))
             {
@@ -45,7 +47,16 @@
             {
                 ViewBag.CLS = "label label-danger";
             }
-            <tr class="bg-gray-light">
+            if (acceptedlist.Contains(item.candidateId))
+            {
+                ViewBag.APP = "bg-green-gradient";
+            }
+            else
+            {
+                ViewBag.APP = "bg-gray-light";
+            }
+            <tr class="@ViewBag.APP">
+                
                 <td>
                     @Html.DisplayFor(modelItem => item.candidate.surname) @Html.DisplayFor(modelItem => item.candidate.name)
                 </td>

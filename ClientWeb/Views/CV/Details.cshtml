@@ -3,9 +3,15 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
+    
 }
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 <h2 style="color:green">Details about @(Model.candidate.sex.Equals("Male") ? "Mr":"Mrs") @Html.ActionLink(Model.candidate.name+" "+Model.candidate.surname, "Details", "Candidate", new { id = Model.candidate.id }, null)</h2>
 <div class="row">
     <div class="col-md-4">
@@ -35,7 +41,7 @@
         <center><h3 style="color:darkkhaki">Experiences</h3></center>
         <table class="table table-bordered">
             <thead>
-                <tr class="danger">
+                <tr class="info">
                     <th>Company</th>
                     <th>Job</th>
                     <th>Start Date</th>
@@ -62,7 +68,7 @@
         <center><h3 style="color:darkkhaki">Languages</h3></center>
         <table class="table table-bordered">
             <thead>
-                <tr class="info">
+                <tr class="danger">
                     <th>Language</th>
                     <th>Level</th>
                 </tr>
@@ -84,37 +90,59 @@
 </div>
 <center>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">
-        Accept
-    </button> @Html.ActionLink("Back", "Index", "CV", null, new { @class = "btn btn-lg btn-primary" }) @Html.ActionLink("Refuse", "Refuse", "CV", new { id = Model.candidate.id }, new { @class = "btn btn-lg btn-danger" })
+    @if (!ViewBag.approuved)
+    {
+        <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">
+            Accept
+        </button>
+    }
+     @Html.ActionLink("Back", "Index", "CV", null, new { @class = "btn btn-lg btn-primary" })
+    @if (!ViewBag.approuved)
+    {
+    @Html.ActionLink("Refuse", "Refuse", "CV", new { id = Model.candidate.id }, new { @class = "btn btn-lg btn-danger" })
+    }
 </center>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        @using (Html.BeginForm("Create", "Appointement"))
+        {
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">Appointement with @Model.candidate.name</h4>
             </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <div class='input-group date' id='datetimepicker1'>
-                        <input type='text' class="form-control" />
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class='input-group date' id='datetimepicker1'>
+                            <input type='text' class="form-control" name="appdate" required />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                        <input type="text" value="@Model.candidate.id" name="candidateid" hidden />
                     </div>
                 </div>
-            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success">Save Appointement</button>
+                <button type="submit" class="btn btn-success">Save Appointement</button>
             </div>
         </div>
+        }
     </div>
 </div>
-<script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker();
+<script>
+    $(document).ready(function () {
+        $(function () {
+            var date = new Date();
+            date.setDate(date.getDate());
+            $('#datetimepicker1').datepicker({
+                format: "dd/mm/yyyy",
+                daysOfWeekDisabled: [0, 6],
+                //datesDisabled: ['13/12/2017','14/12/2017'],
+                startDate: date,
+                autoclose: true
             });
+        });
+    });
 </script>
 

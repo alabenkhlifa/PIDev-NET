@@ -291,6 +291,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AppointementController.cs" />
     <Compile Include="Controllers\CandidateController.cs" />
     <Compile Include="Controllers\CVController.cs" />
     <Compile Include="Controllers\EducationController.cs" />
@@ -479,6 +480,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Appointement\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClassLibrary1\Data.csproj">

@@ -19,6 +19,7 @@ namespace Data
         public virtual DbSet<Education> education { get; set; }
         public virtual DbSet<Experience> experience { get; set; }
         public virtual DbSet<Languages> languages { get; set; }
+        public virtual DbSet<Appointement> appointement { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

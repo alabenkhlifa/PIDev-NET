@@ -16,6 +16,7 @@ namespace Domain
         [Column(TypeName = "Date")]
         public DateTime to { get; set; }
         [Display(Name = "education_title")]
+        [StringLength(30)]
         public string title { get; set; }
         public Organisation organisation { get; set; }
 

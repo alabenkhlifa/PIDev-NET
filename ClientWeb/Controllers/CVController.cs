@@ -13,12 +13,22 @@ namespace ClientWeb.Controllers
     {
         CVService CVS = new CVService();
         CandidateService CS = new CandidateService();
+        AppointementService AS = new AppointementService();
         
         // GET: CV
         public ActionResult Index()
         {
             if (Session["User"] != null)
+            {
+                var candlist = new List<int>();
+                var applist = AS.GetAll().ToList();
+                foreach(var app in applist)
+                {
+                    candlist.Add(app.candidateid);
+                }
+                ViewData["AcceptedList"] = candlist;
                 return View(CVS.GetAll());
+            }
             return RedirectToAction("Index", "Login");
         }
 
@@ -27,7 +37,14 @@ namespace ClientWeb.Controllers
         {
             if (Session["User"] == null)
                 return RedirectToAction("Index", "Login");
-            else { 
+            else {
+                var applist = AS.GetAll().ToList();
+                var candlist = new List<int>();
+                foreach (var app in applist)
+                {
+                    candlist.Add(app.candidateid);
+                }
+                bool approuved = false;
                 EducationService ES = new EducationService();
                 CV c = CVS.GetById(id);
 
@@ -43,6 +60,9 @@ namespace ClientWeb.Controllers
                     CVVM.languages = c.languages.ToList();
                 CVVM.linkedInLink = c.linkedInLink;
                 CVVM.typeofjob = c.typeofjob;
+                if (candlist.Contains(c.candidateId))
+                    approuved = true;
+                ViewBag.approuved = approuved;
                 return View(CVVM);
             }
             

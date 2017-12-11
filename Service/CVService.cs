@@ -18,5 +18,17 @@ namespace Service
         {
 
         }
+
+        public List<CV> getUnaccepted()
+        {
+            var response = from c in utwk.getRepository<Candidate>().GetAll()
+                           join app in utwk.getRepository<Appointement>().GetAll()
+                           on c.id equals app.candidateid
+                           join cv in utwk.getRepository<CV>().GetAll()
+                           on c.id equals cv.candidateId
+                           where c.id.Equals(app.candidateid)
+                           select cv;
+            return response.ToList();
+        }
     }
 }

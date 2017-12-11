@@ -16,7 +16,9 @@ namespace Domain
         [Column(TypeName = "Date")]
         public DateTime to { get; set; }
         [Display(Name = "experience_poste")]
+        [StringLength(30)]
         public string poste { get; set; }
+        [StringLength(30)]
         public string company { get; set; }
         [ForeignKey("cv")]
         public int cv_id { get; set; }
