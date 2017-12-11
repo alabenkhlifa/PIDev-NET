@@ -1,0 +1,43 @@
+﻿@model ClientWeb.Models.CollectViewModel
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+<div class="alert alert-warning">
+    <h3>Are you sure you want to delete this event?</h3>
+</div>
+<div>
+    <h4>Collecte</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CollectName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CollectDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CollectType)
+        </dt>
+
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-warning" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
+

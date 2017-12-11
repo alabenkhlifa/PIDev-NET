@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,14 @@ namespace Data.Infrastructure
             dataContext = dbFactory.DataContext;
         }
 
+        private ICollectRepository collectRepository;
+
+        public ICollectRepository CollectRepository
+        {
+
+            get { return collectRepository = new CollectRepository(dbFactory); }
+
+        }
 
 
         public void Commit()

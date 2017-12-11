@@ -1,0 +1,45 @@
+﻿@model  ClientWeb.Models.CollectViewModel
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+<div>
+    <hr />
+    <div style="width :auto ; margin: 0 10% ;">
+
+        <table class="table table-striped ">
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CollectName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CollectName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CollectDescription)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CollectDescription)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CollectType)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CollectType)
+            </dd>
+
+
+
+        </table>
+    </div>
+</div>
+
+

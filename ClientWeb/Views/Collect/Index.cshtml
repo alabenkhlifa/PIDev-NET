@@ -1,0 +1,61 @@
+﻿@model  IEnumerable<ClientWeb.Models.CollectViewModel> 
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+@using (Html.BeginForm())
+            {
+    <div class="form-group">
+        <div class="col-md-10" style="margin-bottom:20px">
+            Search an collect: @Html.TextBox("SearchString")
+            <input type="submit" value="Filter" class="btn btn-default" /><i class="glyphicon glyphicon-search"></i> <br />
+        </div>
+
+    </div>
+}
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.CollectName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CollectDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CollectType)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CollectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CollectDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CollectType)
+            </td>
+
+
+
+            <td></td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CollectID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.CollectID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CollectID })
+               
+            </td>
+        </tr>
+    }
+
+</table>
+

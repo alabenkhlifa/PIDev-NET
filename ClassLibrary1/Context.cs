@@ -9,6 +9,7 @@ namespace Data
         public Context()
             : base("name=Model1")
         {
+            
         }
 
         public virtual DbSet<plainpassword> plainpassword { get; set; }
@@ -19,16 +20,17 @@ namespace Data
         public virtual DbSet<Education> education { get; set; }
         public virtual DbSet<Experience> experience { get; set; }
         public virtual DbSet<Languages> languages { get; set; }
+        public virtual DbSet<Collect> collect { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<plainpassword>()
                 .Property(e => e.Password)
-                .IsUnicode(false);
+                ;
 
             modelBuilder.Entity<plainpassword>()
                 .Property(e => e.Username)
-                .IsUnicode(false);
+                ;
 
             modelBuilder.Entity<t_token>()
                 .Property(e => e.value)

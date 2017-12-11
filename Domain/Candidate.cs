@@ -13,6 +13,7 @@ namespace Domain
         [MaxLength(25)]
         public string name { get; set; }
         [Display(Name = "candidate_surname")]
+        [MaxLength(25)]
         public string surname { get; set; }
         [Display(Name = "candidate_birthdate")]
         [Column(TypeName = "Date")]
@@ -20,8 +21,11 @@ namespace Domain
         [Display(Name = "candidate_age")]
         public int age { get; set; }
         public Address address { get; set; }
+        [MaxLength(25)]
         public string phone { get; set; }
+        [MaxLength(50)]
         public string email { get; set; }
+        [MaxLength(25)]
         public string sex { get; set; }
 
     }
