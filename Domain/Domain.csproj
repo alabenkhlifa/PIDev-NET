@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Address.cs" />
+    <Compile Include="ArchiveService.cs" />
     <Compile Include="Candidate.cs" />
     <Compile Include="CV.cs" />
     <Compile Include="Education.cs" />
