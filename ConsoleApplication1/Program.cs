@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -138,7 +139,36 @@ namespace ConsoleApplication1
 
             //var releases = JObject.Parse(content);
 
-           
+
+            //MailMessage msg = new MailMessage();
+
+            //msg.From = new MailAddress("hu93ed@gmail.com");
+            //var toaddress = new MailAddress("ala.benkhlifa@esprit.tn");
+            //msg.To.Add(toaddress);
+            //msg.Subject = "Hello world! " + DateTime.Now.ToString();
+            //msg.Body = "hi to you ... :)";
+            //SmtpClient client = new SmtpClient();
+            //client.UseDefaultCredentials = true;
+            //client.Host = "smtp.gmail.com";
+            //client.Port = 587;
+            //client.EnableSsl = true;
+            //client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            //client.Credentials = new NetworkCredential("hu93ed@gmail.com", "Ala963348501");
+            //client.Timeout = 20000;
+            //try
+            //{
+            //    client.Send(msg);
+                
+            //}
+            //catch (Exception ex)
+            //{
+                
+            //}
+            //finally
+            //{
+            //    msg.Dispose();
+            //}
+
             Console.ReadKey();
         }
     }

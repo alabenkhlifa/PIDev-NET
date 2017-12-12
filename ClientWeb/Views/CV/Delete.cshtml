@@ -1,0 +1,20 @@
+﻿@model Domain.CV
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h4>CV</h4>
+    <hr />
+    
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="PDF" class="btn btn-default" /> |
+        </div>
+    }
+</div>

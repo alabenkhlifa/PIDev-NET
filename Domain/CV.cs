@@ -18,7 +18,7 @@ namespace Domain
         
         [Display(Name = "CV_typeOfJob")]
         [Required]
-        [StringLength(15)]
+        [StringLength(50)]
         public string typeofjob { get; set; }
         [Display(Name = "CV_departement")]
         [StringLength(20)]

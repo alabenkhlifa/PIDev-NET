@@ -15,7 +15,7 @@ namespace ClientWeb.Controllers
         // GET: Education
         public ActionResult Index()
         {
-            return View(Session["EducationSession"] as List<Education>);
+            return View();
         }
 
         // GET: Education/Details/5

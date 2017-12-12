@@ -81,6 +81,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\pdfcrowd.dll</HintPath>
     </Reference>
+    <Reference Include="Select.Pdf, Version=17.3.0.0, Culture=neutral, PublicKeyToken=e0ae9f6e27a97018, processorArchitecture=MSIL">
+      <HintPath>..\packages\Select.Pdf.17.3.0\lib\net40\Select.Pdf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="ServiceStack, Version=4.5.14.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ServiceStack.4.5.14\lib\net45\ServiceStack.dll</HintPath>
       <Private>True</Private>
@@ -176,6 +180,15 @@
     <Content Include="Content\css\form.css" />
     <Content Include="Content\css\login.css" />
     <Content Include="Content\js\form.js" />
+    <Content Include="Content\pdf\css\styles-2.css" />
+    <Content Include="Content\pdf\css\styles-3.css" />
+    <Content Include="Content\pdf\css\styles-4.css" />
+    <Content Include="Content\pdf\css\styles-5.css" />
+    <Content Include="Content\pdf\css\styles-6.css" />
+    <Content Include="Content\pdf\css\styles.css" />
+    <Content Include="Content\pdf\images\profile.png" />
+    <Content Include="Content\pdf\js\main.js" />
+    <Content Include="Content\pdf\js\min\main-min.js" />
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
@@ -275,7 +288,6 @@
     <Content Include="Views\CV\Index.cshtml" />
     <Content Include="Views\CV\Details.cshtml" />
     <Content Include="Views\Education\Create.cshtml" />
-    <Content Include="Views\Education\Index.cshtml" />
     <Content Include="Views\CV\Create.cshtml" />
     <Content Include="Views\Candidate\EditFromSession.cshtml" />
     <Content Include="Views\Experience\Create.cshtml" />
@@ -283,6 +295,8 @@
     <Content Include="Views\Candidate\form.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="scripts\jquery-1.9.1.min.map" />
+    <Content Include="Views\CV\Delete.cshtml" />
+    <Content Include="Views\PDF\index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -298,6 +312,7 @@
     <Compile Include="Controllers\ExperienceController.cs" />
     <Compile Include="Controllers\LanguagesController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PDFController.cs" />
     <Compile Include="Models\CandidateModel.cs" />
     <Compile Include="Models\CvModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
@@ -480,6 +495,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\pdf\less\" />
+    <Folder Include="Content\pdf\plugins\" />
     <Folder Include="Views\Appointement\" />
   </ItemGroup>
   <ItemGroup>

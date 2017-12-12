@@ -5,56 +5,47 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
-
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Experience</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.from, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.from, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.from, "", new { @class = "text-danger" })
+    <center>
+        <div class="form-horizontal">
+            <h4>Experiences</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="from">From</label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control input-md" data-min-length="10" data-inputmask="'alias': 'yyyy/mm/dd'" placeholder="yyyy/mm/dd" data-mask="" name="from">
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.to, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.to, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.to, "", new { @class = "text-danger" })
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="to">To</label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control input-md" data-min-length="10" data-inputmask="'alias': 'yyyy/mm/dd'" placeholder="yyyy/mm/dd" data-mask="" name="to">
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.poste, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.poste, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.poste, "", new { @class = "text-danger" })
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="poste">Poste</label>
+                <div class="col-md-4">
+                    <input name="poste" placeholder="Poste" class="form-control input-md" required="" type="text">
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.company, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.company, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.company, "", new { @class = "text-danger" })
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="company">Company</label>
+                <div class="col-md-4">
+                    <input name="company" placeholder="Company" class="form-control input-md" required="" type="text">
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+            <button type="submit" class="btn btn-default">Add Experience</button>
         </div>
-    </div>
+    </center>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

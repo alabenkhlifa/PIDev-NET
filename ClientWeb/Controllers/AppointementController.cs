@@ -3,6 +3,8 @@ using Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 
@@ -50,6 +52,7 @@ namespace ClientWeb.Controllers
                 };
                 AS.Add(appointement);
                 AS.Commit();
+                sendEmail(c.email, appointementDate);
                 return RedirectToAction("Index","CV");
             }
             catch
@@ -58,48 +61,39 @@ namespace ClientWeb.Controllers
             }
         }
 
-        // GET: Appointement/Edit/5
-        public ActionResult Edit(int id)
+        public void sendEmail(string Email,DateTime when)
         {
-            return View();
-        }
+            MailMessage msg = new MailMessage();
 
-        // POST: Appointement/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
+            msg.From = new MailAddress("hu93ed@gmail.com");
+
+            var toaddress = new MailAddress(Email);
+
+            msg.To.Add(toaddress);
+            msg.Subject = "Resumee Accepted ! ";
+            msg.Body = "Interview On "+when;
+            SmtpClient client = new SmtpClient();
+            client.UseDefaultCredentials = true;
+            client.Host = "smtp.gmail.com";
+            client.Port = 587;
+            client.EnableSsl = true;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.Credentials = new NetworkCredential("hu93ed@gmail.com", "Ala963348501");
+            client.Timeout = 20000;
             try
             {
-                // TODO: Add update logic here
+                client.Send(msg);
 
-                return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+
+            }
+            finally
+            {
+                msg.Dispose();
             }
         }
-
-        // GET: Appointement/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Appointement/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        
     }
 }

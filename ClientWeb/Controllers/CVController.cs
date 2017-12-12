@@ -1,5 +1,6 @@
 ﻿using ClientWeb.Models;
 using Domain;
+using SelectPdf;
 using Service;
 using System;
 using System.Collections.Generic;
@@ -83,28 +84,37 @@ namespace ClientWeb.Controllers
         [HttpPost]
         public ActionResult Create(CV cv)
         {
-            try
-            {
-                Candidate C = Session["Candidate"] as Candidate;
-                List<Education> LE = Session["EducationSession"] as List<Education>;
-                List<Experience> LEx = Session["ExperienceSession"] as List<Experience>;
-                List<Languages> LL = Session["LanguagesSession"] as List<Languages>;
-                cv.educations = LE;
-                cv.experiences = LEx;
+            try { 
+                List<Education> LE = new List<Education>();
+                List<Experience> LEx = new List<Experience>();
+                List<Languages> LL = new List<Languages>();
+                Candidate C =new Candidate();
+                C = Session["Candidate"] as Candidate;
                 cv.candidate = C;
-                cv.candidateId=C.id;
-                cv.languages = LL;
+                if (Session["EducationSession"] != null)
+                {
+                    LE = Session["EducationSession"] as List<Education>;
+                    cv.educations = LE;
+                }
+                if (Session["ExperienceSession"] != null) { 
+                    LEx = Session["ExperienceSession"] as List<Experience>;
+                    cv.experiences = LEx;
+                }
+                if (Session["LanguagesSession"] != null)
+                {
+                    LL = Session["LanguagesSession"] as List<Languages>;
+                    cv.languages = LL;
+                }
                 CVS.Add(cv);
                 CVS.Commit();
-                Session["Candidate"] = null;
-                Session["EducationSession"] = null;
-                Session["ExperienceSession"] = null;
-                Session["Languages"] = null;
-                return RedirectToAction("Index");
+                Session.Clear();
+                Session["currentCandidate"] = cv.candidate;
+                return RedirectToAction("Index","PDF");
             }
-            catch
+            catch (Exception E)
             {
-                return View();
+                Session.Abandon();
+                return RedirectToAction("Index", "CV");
             }
         }
 
@@ -131,20 +141,33 @@ namespace ClientWeb.Controllers
         }
 
         // GET: CV/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete()
         {
             return View();
         }
 
         // POST: CV/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(FormCollection collection)
         {
             try
             {
                 // TODO: Add delete logic here
+                HtmlToPdf converter = new HtmlToPdf();
 
-                return RedirectToAction("Index");
+                // create a new pdf document converting an url 
+                PdfDocument doc = converter.ConvertUrl("http://localhost:8009/CV/Create");
+                // save pdf document 
+                byte[] pdf = doc.Save();
+
+                // close pdf document 
+                doc.Close();
+
+                // return resulted pdf document 
+                FileResult fileResult = new FileContentResult(pdf, "application/pdf");
+                fileResult.FileDownloadName = "Document.pdf";
+                return fileResult;
+                //return RedirectToAction("Index");
             }
             catch
             {

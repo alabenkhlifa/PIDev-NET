@@ -1,17 +1,14 @@
 ﻿@model IEnumerable<Domain.Candidate>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Candidate | List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>List of Candidates</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
-    <tr>
+    <tr class="bg-red-gradient">
         <th>
             Name
         </th>
@@ -27,7 +24,9 @@
         <th>
             Email
         </th>
-        <th></th>
+        <th>
+            Details
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -48,9 +47,7 @@
             @Html.DisplayFor(modelItem => item.email)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.ActionLink("Details", "Details", new { id=item.id }, new { @class = "btn btn-sm btn-block btn-warning" })
         </td>
     </tr>
 }

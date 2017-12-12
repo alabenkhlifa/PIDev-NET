@@ -43,7 +43,7 @@ namespace ClientWeb.Controllers
         }
         public ActionResult Logout()
         {
-            Session["User"] = null;
+            Session.Abandon();
             return RedirectToAction("Index");
         }
     }
