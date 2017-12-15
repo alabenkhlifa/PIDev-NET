@@ -78,7 +78,7 @@ namespace ClientWeb.Controllers
             client.Port = 587;
             client.EnableSsl = true;
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.Credentials = new NetworkCredential("hu93ed@gmail.com", "Ala963348501");
+            client.Credentials = new NetworkCredential("hu93ed@gmail.com", "XXX");
             client.Timeout = 20000;
             try
             {
